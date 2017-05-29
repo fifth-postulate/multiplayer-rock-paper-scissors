@@ -23,5 +23,8 @@
   "homepage": "https://github.com/fifth-postulate/multiplayer-rock-paper-scissors#readme",
   "dependencies": {
     "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
