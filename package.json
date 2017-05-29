@@ -4,6 +4,8 @@
   "description": "Application to play multiplayer rock-paper-scissors online",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "develop": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
