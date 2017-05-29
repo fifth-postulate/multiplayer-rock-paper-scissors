@@ -1,2 +1,2 @@
-# multiplayer-rock-paper-scissors
-Application to play multiplayer rock-paper-scissors online
+# Multiplayer Rock-Paper-Scissors
+Application to play multiplayer rock-paper-scissors online.
