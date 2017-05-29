@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/fifth-postulate/multiplayer-rock-paper-scissors/issues"
   },
-  "homepage": "https://github.com/fifth-postulate/multiplayer-rock-paper-scissors#readme"
+  "homepage": "https://github.com/fifth-postulate/multiplayer-rock-paper-scissors#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
