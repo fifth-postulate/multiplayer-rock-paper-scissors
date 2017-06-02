@@ -3,8 +3,8 @@ const assert = require('chai').assert;
 const Game = require('../src/game.js');
 
 describe('In a game', function(){
-    describe('players', function(){
-        it('should have identifiers', function(){
+    describe('a player', function(){
+        it('should have an identifier', function(){
             const game = new Game();
 
             var playerId = game.registerPlayer();
@@ -12,7 +12,7 @@ describe('In a game', function(){
             assert.exists(playerId);
         });
 
-        it('should have unique identifiers', function(){
+        it('should have an unique identifier', function(){
             const game = new Game();
 
             var playerOneId = game.registerPlayer();
