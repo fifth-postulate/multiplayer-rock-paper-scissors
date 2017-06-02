@@ -1,5 +1,6 @@
 const express = require('express');
 const mustacheExpress = require('mustache-express');
+const bodyParser = require('body-parser');
 const app = express();
 
 const Game = require('./src/game');
@@ -13,6 +14,8 @@ app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set('views', './views');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('resources'));
 
 app.post('/start', function(req, res){
@@ -29,8 +32,10 @@ app.get('/join', function(req, res){
 });
 
 app.post('/respond', function(req, res){
-    console.log(req);
-    res.render('finish', {});
+    const gameId = req.body.gameId;
+    const playerId = req.body.playerId;
+    const choice = req.body.choice;
+    res.render('finish', { gameId: gameId, playerId: playerId, choice: choice });
 });
 
 app.listen(port, function(){
