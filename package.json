@@ -30,6 +30,7 @@
     "mustache-express": "^1.2.4"
   },
   "devDependencies": {
+    "bower": "^1.8.0",
     "chai": "^4.0.1",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0"
