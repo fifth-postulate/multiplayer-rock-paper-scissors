@@ -3,8 +3,10 @@ const mustacheExpress = require('mustache-express');
 const app = express();
 
 const Game = require('./src/game');
+const Repository = require('./src/repository');
 
 const port = 3000;
+const repository = new Repository() ;
 
 app.engine('mustache', mustacheExpress());
 
@@ -15,16 +17,19 @@ app.use(express.static('resources'));
 
 app.post('/start', function(req, res){
     let game = new Game();
-    res.render('landing', { id: game.id });
+    repository.save(game);
+    res.render('landing', { gameId: game.id });
 });
 
 app.get('/join', function(req, res){
-    const gameId = req.query.id;
-    // TODO retrieve game and register player
-    res.render('round', { id: gameId, round: 1 });
+    const gameId = req.query.gameId;
+    const game = repository.load(gameId);
+    const playerId = game.registerPlayer();
+    res.render('round', { gameId: gameId, playerId: playerId });
 });
 
 app.post('/respond', function(req, res){
+    console.log(req);
     res.render('finish', {});
 });
 

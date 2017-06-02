@@ -4,11 +4,12 @@
         <meta charset="utf-8"/>
     </head>
     <body>
-        <h1>Round {{ round }}</h1>
         <form action="respond" method="post">
-            <button type="submit">Rock</button>
-            <button type="submit">Paper</button>
-            <button type="submit">Scissors</button>
+            <input type="hidden" name="gameId" value="{{ gameId }}" />
+            <input type="hidden" name="playerId" value="{{ playerId }}" />
+            <button type="submit" name="rock">Rock</button>
+            <button type="submit" name="paper">Paper</button>
+            <button type="submit" name="scissors">Scissors</button>
         </form>
     </body>
 </html>
