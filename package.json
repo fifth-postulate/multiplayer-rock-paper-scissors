@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "develop": "nodemon server.js",
-    "test": "mocha spec"
+    "test": "mocha spec",
+    "watch": "mocha --watch spec"
   },
   "repository": {
     "type": "git",
