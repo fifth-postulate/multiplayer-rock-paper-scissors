@@ -151,5 +151,35 @@ describe('In a game', function(){
             assert.sameMembers(winners, [playerTwoId, playerThreeId, playerFiveId]);
             assert.sameMembers(losers, [playerOneId, playerFourId]);
         });
-   });
+    });
+
+    describe('the following are not happy flows', function(){
+        let game, playerOneId;
+
+        beforeEach(function(){
+            game = new Game();
+            playerOneId = game.registerPlayer();
+        });
+
+        it('register a player in a resolved game', function(){
+            game.pick(playerOneId, 'rock');
+            game.winners();
+
+            var id = game.registerPlayer();
+
+            assert.notExists(id);
+        });
+
+        it('pick an alternative in a resolved game', function(){
+            playerTwoId = game.registerPlayer();
+            playerThreeId = game.registerPlayer();
+            game.pick(playerOneId, 'rock');
+            game.pick(playerTwoId, 'paper');
+            const before = game.winners();
+
+            game.pick(playerThreeId, 'paper');
+
+            assert.sameMembers(game.winners(), before);
+        });
+    });
 });

@@ -7,11 +7,15 @@ function Game() {
     this.picks = {};
 }
 Game.prototype.registerPlayer = function(){
-    do {
-        var id = uid();
-    } while(id in this.players);
-    this.players[id] = true;
-    return id;
+    if (!this.finished()) {
+        do {
+            var id = uid();
+        } while(id in this.players);
+        this.players[id] = true;
+        return id;
+    } else {
+        return undefined;
+    }
 };
 Game.prototype.registeredPlayers = function(){
     var players = [];
@@ -40,6 +44,9 @@ Game.prototype.resolve = function(){
         winners: winners,
         losers: losers
     };
-}
+};
+Game.prototype.finished = function(){
+    return !!(this.resolution);
+};
 
 module.exports = Game;
