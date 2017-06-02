@@ -1,8 +1,14 @@
+const uid = require('./uid.js');
+
 function Game() {
-    this.nextIdentifier = 1;
+    this.players = {};
 }
 Game.prototype.registerPlayer = function(){
-    return this.nextIdentifier++;
+    do {
+        var id = uid();
+    } while(id in this.players);
+    this.players[id] = true;
+    return id;
 };
 
 module.exports = Game;
