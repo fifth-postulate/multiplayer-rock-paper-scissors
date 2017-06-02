@@ -3,6 +3,12 @@ const assert = require('chai').assert;
 const Game = require('../src/game.js');
 
 describe('In a game', function(){
+    it('an identifier is present', function(){
+        const game = new Game();
+
+        assert.exists(game.id);
+    });
+
     describe('a player', function(){
         it('should have an identifier', function(){
             const game = new Game();

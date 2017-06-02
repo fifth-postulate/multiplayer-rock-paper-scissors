@@ -3,6 +3,7 @@ const group = require('./group');
 const resolve = require('./resolve');
 
 function Game() {
+    this.id = uid(10);
     this.players = {};
     this.picks = {};
 }
