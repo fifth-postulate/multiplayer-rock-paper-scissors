@@ -38,8 +38,8 @@ describe('In a game', function(){
             let winners = game.winners();
             let losers = game.losers();
 
-            assert.deepEqual(winners, [playerOneId]);
-            assert.deepEqual(losers, [playerTwoId]);
+            assert.sameMembers(winners, [playerOneId]);
+            assert.sameMembers(losers, [playerTwoId]);
         });
 
         it('scissors cuts paper', function(){
@@ -49,8 +49,8 @@ describe('In a game', function(){
             let winners = game.winners();
             let losers = game.losers();
 
-            assert.deepEqual(winners, [playerOneId]);
-            assert.deepEqual(losers, [playerTwoId]);
+            assert.sameMembers(winners, [playerOneId]);
+            assert.sameMembers(losers, [playerTwoId]);
         });
 
         it('paper wraps rock', function(){
@@ -60,8 +60,8 @@ describe('In a game', function(){
             let winners = game.winners();
             let losers = game.losers();
 
-            assert.deepEqual(winners, [playerOneId]);
-            assert.deepEqual(losers, [playerTwoId]);
+            assert.sameMembers(winners, [playerOneId]);
+            assert.sameMembers(losers, [playerTwoId]);
         });
 
         it('same picks only knows winners', function(){
@@ -71,8 +71,8 @@ describe('In a game', function(){
             let winners = game.winners();
             let losers = game.losers();
 
-            assert.deepEqual(winners, [playerOneId, playerTwoId]);
-            assert.deepEqual(losers, []);
+            assert.sameMembers(winners, [playerOneId, playerTwoId]);
+            assert.sameMembers(losers, []);
         });
     });
 
@@ -94,8 +94,8 @@ describe('In a game', function(){
             let winners = game.winners();
             let losers = game.losers();
 
-            assert.deepEqual(winners, [playerOneId]);
-            assert.deepEqual(losers, [playerTwoId, playerThreeId]);
+            assert.sameMembers(winners, [playerOneId]);
+            assert.sameMembers(losers, [playerTwoId, playerThreeId]);
         });
 
         it('normal rules still apply, even when a majority', function(){
@@ -106,8 +106,50 @@ describe('In a game', function(){
             let winners = game.winners();
             let losers = game.losers();
 
-            assert.deepEqual(winners, [playerOneId, playerThreeId]);
-            assert.deepEqual(losers, [playerTwoId]);
+            assert.sameMembers(winners, [playerOneId, playerThreeId]);
+            assert.sameMembers(losers, [playerTwoId]);
+        });
+
+        it('ties should only know winners', function(){
+            game.pick(playerOneId, 'rock');
+            game.pick(playerTwoId, 'paper');
+            game.pick(playerThreeId, 'scissors');
+
+            let winners = game.winners();
+            let losers = game.losers();
+
+            assert.sameMembers(winners, [playerOneId, playerTwoId, playerThreeId]);
+            assert.sameMembers(losers, []);
+        });
+
+        it('winner is deduced by most points scored', function(){
+            const playerFourId = game.registerPlayer();
+            game.pick(playerOneId, 'rock');
+            game.pick(playerTwoId, 'paper');
+            game.pick(playerThreeId, 'scissors');
+            game.pick(playerFourId, 'rock');
+
+            let winners = game.winners();
+            let losers = game.losers();
+
+            assert.sameMembers(winners, [playerTwoId]);
+            assert.sameMembers(losers, [playerOneId, playerThreeId, playerFourId]);
+        });
+
+        it('winner is deduced by most points scored, ties knows only winners', function(){
+            const playerFourId = game.registerPlayer();
+            const playerFiveId = game.registerPlayer();
+            game.pick(playerOneId, 'rock');
+            game.pick(playerTwoId, 'paper');
+            game.pick(playerThreeId, 'scissors');
+            game.pick(playerFourId, 'rock');
+            game.pick(playerFiveId, 'paper');
+
+            let winners = game.winners();
+            let losers = game.losers();
+
+            assert.sameMembers(winners, [playerTwoId, playerThreeId, playerFiveId]);
+            assert.sameMembers(losers, [playerOneId, playerFourId]);
         });
    });
 });

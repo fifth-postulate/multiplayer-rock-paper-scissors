@@ -13,6 +13,15 @@ Game.prototype.registerPlayer = function(){
     this.players[id] = true;
     return id;
 };
+Game.prototype.registeredPlayers = function(){
+    var players = [];
+    for (let player in this.players) {
+        if (this.players.hasOwnProperty(player)) {
+            players.push(player);
+        }
+    }
+    return players;
+};
 Game.prototype.pick = function(playerId, choice){
     this.picks[playerId] = choice;
 };
@@ -26,7 +35,7 @@ Game.prototype.losers = function(){
 };
 Game.prototype.resolve = function(){
     const groups = group(this.picks);
-    const {winners, losers} = resolve(groups);
+    const {winners, losers} = resolve(groups, this.registeredPlayers());
     this.resolution = {
         winners: winners,
         losers: losers
