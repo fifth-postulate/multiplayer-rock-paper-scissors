@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/fifth-postulate/multiplayer-rock-paper-scissors#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mustache-express": "^1.2.4"
   },
