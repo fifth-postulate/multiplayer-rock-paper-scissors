@@ -1,0 +1,14 @@
+.jumbotron {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.jumbotron p {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.jumbotron .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+}
