@@ -6,15 +6,23 @@ import Html.Attributes as Attribute
 import QRCode
 
 
-main: Program Never Model Message
+main: Program Flags Model Message
 main =
-    Html.program
+    Html.programWithFlags
     {
-      init = ({ gameId = "123456" }, Cmd.none)
+      init = init
     , update = update
     , view = view
     , subscriptions = subscriptions
     }
+
+
+init : Flags -> (Model, Cmd Message)
+init flag =
+    (flag, Cmd.none)
+
+
+type alias Flags = Model
 
 
 type alias Model =
