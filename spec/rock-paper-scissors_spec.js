@@ -177,7 +177,8 @@ describe('In a game', function(){
 
         it('registering a player', function(done){
             game.register(function(event){
-                assert.hasAllKeys(event, ['gameId', 'playerId']);
+                assert.hasAllKeys(event, ['type', 'gameId', 'playerId']);
+                assert.equal(event.type, 'registration');
                 assert.equal(event.gameId, game.id);
                 done();
             });
@@ -185,11 +186,12 @@ describe('In a game', function(){
             game.registerPlayer();
         });
 
-        it('registering a player', function(done){
+        it('when a player makes a choice', function(done){
             let playerId = game.registerPlayer();
             game.register(function(event){
-                assert.hasAllKeys(event, ['gameId', 'playerId', 'choice']);
+                assert.hasAllKeys(event, ['type', 'gameId', 'playerId', 'choice']);
                 assert.deepEqual(event, {
+                    'type': 'pick',
                     'gameId':  game.id,
                     'playerId': playerId,
                     'choice': 'rock'
@@ -198,6 +200,21 @@ describe('In a game', function(){
             });
 
             game.pick(playerId, 'rock');
+        });
+
+        it('resolving a play', function(done){
+            let playerId = game.registerPlayer();
+            game.pick(playerId, 'rock');
+            game.register(function(event){
+                assert.hasAllKeys(event, ['type', 'gameId']);
+                assert.deepEqual(event, {
+                    'type': 'resolution',
+                    'gameId':  game.id
+                });
+                done();
+            });
+
+            game.resolve();
         });
     });
 

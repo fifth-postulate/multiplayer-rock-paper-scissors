@@ -16,7 +16,7 @@ Game.prototype.registerPlayer = function(){
             var id = uid();
         } while(id in this.players);
         this.players[id] = true;
-        this.notify({ 'gameId': this.id, 'playerId': id });
+        this.notify({ 'type': 'registration', 'gameId': this.id, 'playerId': id });
         return id;
     } else {
         return undefined;
@@ -33,7 +33,7 @@ Game.prototype.registeredPlayers = function(){
 };
 Game.prototype.pick = function(playerId, choice){
     this.picks[playerId] = choice;
-    this.notify({ 'gameId': this.id, 'playerId': playerId, 'choice': choice });
+    this.notify({ 'type': 'pick', 'gameId': this.id, 'playerId': playerId, 'choice': choice });
 };
 Game.prototype.winners = function(){
     if (!this.resolution) { this.resolve(); }
@@ -50,6 +50,7 @@ Game.prototype.resolve = function(){
         winners: winners,
         losers: losers
     };
+    this.notify({ 'type': 'resolution', 'gameId': this.id });
 };
 Game.prototype.finished = function(){
     return !!(this.resolution);
