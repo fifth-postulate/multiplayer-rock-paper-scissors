@@ -2,12 +2,24 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/base.css"/>
+        <title>Multiplayer Rock-Paper-Scissors: Game {{ gameId }} Player {{ playerId }} Choice {{ choice }}</title>
     </head>
     <body>
-        <h1>Finished</h1>
-        gameId: {{ gameId }}, playerId: {{ playerId }}, choice: {{ choice }}
-        <form action="start" method="post">
-            <button type="submit">Start Again</button>
-        </form>
+        <div id="container" class="container">
+            <div class="jumbotron">
+                <h1>Finished</h1>
+                gameId: {{ gameId }}, playerId: {{ playerId }}, choice: {{ choice }}
+            </div>
+        </div>
+        <script src="/components/jquery/dist/jquery.min.js"></script>
+        <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+         var socket = io();
+        </script>
     </body>
 </html>
