@@ -1,8 +1,17 @@
 const assert = require('chai').assert;
 
-const Game = require('../src/game.js');
+const Observable = require('../src/observable');
+const Game = require('../src/game');
 
 describe('In a game', function(){
+    it('there could be observers', function(){
+        const game = new Game();
+
+        let assertion = game instanceof Observable;
+
+        assert.isTrue(assertion);
+    });
+
     it('an identifier is present', function(){
         const game = new Game();
 

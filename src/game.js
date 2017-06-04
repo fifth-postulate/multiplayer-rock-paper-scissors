@@ -1,12 +1,15 @@
 const uid = require('./uid');
 const group = require('./group');
 const resolve = require('./resolve');
+const Observable = require('./observable');
 
 function Game() {
+    Observable.call(this);
     this.id = uid(10);
     this.players = {};
     this.picks = {};
 }
+Game.prototype = Object.create(Observable.prototype);
 Game.prototype.registerPlayer = function(){
     if (!this.finished()) {
         do {
