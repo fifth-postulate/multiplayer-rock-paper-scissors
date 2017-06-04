@@ -18,8 +18,11 @@
         </div>
         <script src="/components/jquery/dist/jquery.min.js"></script>
         <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
         <script src="/js/signpost.js"></script>
         <script>
+         var socket = io();
+
          var container = document.getElementById('container');
          var app = Elm.RockPaperScissors.SignPost.embed(container, {
              'gameId': '{{ gameId }}'
