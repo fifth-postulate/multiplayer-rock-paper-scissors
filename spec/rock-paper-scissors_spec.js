@@ -168,6 +168,39 @@ describe('In a game', function(){
         });
     });
 
+    describe('the following can be observed', function(){
+        let game;
+
+        beforeEach(function(){
+            game = new Game();
+        });
+
+        it('registering a player', function(done){
+            game.register(function(event){
+                assert.hasAllKeys(event, ['gameId', 'playerId']);
+                assert.equal(event.gameId, game.id);
+                done();
+            });
+
+            game.registerPlayer();
+        });
+
+        it('registering a player', function(done){
+            let playerId = game.registerPlayer();
+            game.register(function(event){
+                assert.hasAllKeys(event, ['gameId', 'playerId', 'choice']);
+                assert.deepEqual(event, {
+                    'gameId':  game.id,
+                    'playerId': playerId,
+                    'choice': 'rock'
+                });
+                done();
+            });
+
+            game.pick(playerId, 'rock');
+        });
+    });
+
     describe('the following are not happy flows', function(){
         let game, playerOneId;
 

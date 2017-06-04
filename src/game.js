@@ -16,6 +16,7 @@ Game.prototype.registerPlayer = function(){
             var id = uid();
         } while(id in this.players);
         this.players[id] = true;
+        this.notify({ 'gameId': this.id, 'playerId': id });
         return id;
     } else {
         return undefined;
@@ -32,6 +33,7 @@ Game.prototype.registeredPlayers = function(){
 };
 Game.prototype.pick = function(playerId, choice){
     this.picks[playerId] = choice;
+    this.notify({ 'gameId': this.id, 'playerId': playerId, 'choice': choice });
 };
 Game.prototype.winners = function(){
     if (!this.resolution) { this.resolve(); }
