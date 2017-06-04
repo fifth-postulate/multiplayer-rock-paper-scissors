@@ -2,14 +2,26 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/base.css"/>
+        <title>Multiplayer Rock-Paper-Scissors: Game {{ gameId }} Player: {{ playerId }}</title>
     </head>
     <body>
-        <form action="respond" method="post">
-            <input type="hidden" name="gameId" value="{{ gameId }}" />
-            <input type="hidden" name="playerId" value="{{ playerId }}" />
-            <button type="submit" name="choice" value="rock">Rock</button>
-            <button type="submit" name="choice" value="paper">Paper</button>
-            <button type="submit" name="choice" value="scissors">Scissors</button>
-        </form>
+        <div id="container" class="container">
+            <div class="jumbotron">
+                <form action="respond" method="post">
+                    <input type="hidden" name="gameId" value="{{ gameId }}" />
+                    <input type="hidden" name="playerId" value="{{ playerId }}" />
+                    <button type="submit" name="choice" value="rock" class="btn btn-lg btn-primary">Rock</button>
+                    <button type="submit" name="choice" value="paper" class="btn btn-lg btn-primary">Paper</button>
+                    <button type="submit" name="choice" value="scissors" class="btn btn-lg btn-primary">Scissors</button>
+                </form>
+            </div>
+        </div>
+        <script src="/components/jquery/dist/jquery.min.js"></script>
+        <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
     </body>
 </html>
