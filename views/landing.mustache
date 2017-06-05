@@ -39,7 +39,11 @@
          socket.emit('admin', { 'gameId': '{{ gameId }}' });
          socket.on('event', function(event){
              console.log(event);
-             adminPanelApp.ports.event.send(event.type);
+             if (event.hasOwnProperty('type')) {
+                 adminPanelApp.ports.event.send(event.type);
+             } else {
+                 adminPanelApp.ports.event.send(event.gameId);
+             }
          });
         </script>
     </body>

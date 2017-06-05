@@ -157,4 +157,7 @@ fromType message =
         if message == "pick" then
             ChoiceMade
         else
-            DoNothing
+            if message == "resolution" then
+                DoNothing
+            else
+                NextGame message

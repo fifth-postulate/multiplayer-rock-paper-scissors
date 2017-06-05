@@ -8990,7 +8990,7 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPane
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$PlayerRegistered = {ctor: 'PlayerRegistered'};
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$DoNothing = {ctor: 'DoNothing'};
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$fromType = function (message) {
-	return _elm_lang$core$Native_Utils.eq(message, 'registration') ? _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$PlayerRegistered : (_elm_lang$core$Native_Utils.eq(message, 'pick') ? _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$ChoiceMade : _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$DoNothing);
+	return _elm_lang$core$Native_Utils.eq(message, 'registration') ? _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$PlayerRegistered : (_elm_lang$core$Native_Utils.eq(message, 'pick') ? _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$ChoiceMade : (_elm_lang$core$Native_Utils.eq(message, 'resolution') ? _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$DoNothing : _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$NextGame(message)));
 };
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$subscriptions = function (_p1) {
 	return _elm_lang$core$Platform_Sub$batch(

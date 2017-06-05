@@ -48,6 +48,16 @@ app.post('/respond', function(req, res){
     });
 });
 
+app.post('/resolve', function(req, res){
+    const gameId = req.query.gameId;
+    repository.load(gameId, function(error, game){
+        if (error) { /* TODO handle error while resolving game */ }
+        game.resolve();
+        res.statusCode = 200;
+        res.end();
+    });
+});
+
 http.listen(port, function(){
     console.log('listening on port', port);
 });
@@ -62,6 +72,16 @@ io.on('connection', function(socket){
             game.register(function(event){
                 console.log(event);
                 socket.emit('event', event);
+                if (event.type === 'resolution') {
+                    const nextGame = new Game();
+                    nextGame.register(function(event){
+                        console.log(event);
+                        socket.emit('event', event);
+                    });
+                    repository.save(game, function(error){
+                        socket.emit('event', { gameId: nextGame.id });
+                    });
+                }
             });
         });
     });
