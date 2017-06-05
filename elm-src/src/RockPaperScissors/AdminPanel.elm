@@ -1,4 +1,4 @@
-module RockPaperScissors.AdminPanel exposing (main)
+port module RockPaperScissors.AdminPanel exposing (main)
 
 
 import Html
@@ -46,8 +46,8 @@ type alias GameId = String
 
 type Message =
       DoNothing
-    | PlayerRegistered GameId
-    | ChoiceMade GameId
+    | PlayerRegistered
+    | ChoiceMade
     | Resolve
     | NextGame GameId
 
@@ -67,17 +67,11 @@ update message model =
     case message of
         DoNothing -> (model, Cmd.none)
 
-        PlayerRegistered gameId ->
-           if gameId == model.current.gameId then
-               ({ model | current = registerPlayer model.current }, Cmd.none)
-           else
-               (model, Cmd.none)
+        PlayerRegistered ->
+            ({ model | current = registerPlayer model.current }, Cmd.none)
 
-        ChoiceMade gameId ->
-            if gameId == model.current.gameId then
-                ({ model | current = registerChoice model.current }, Cmd.none)
-            else
-                (model, Cmd.none)
+        ChoiceMade ->
+            ({ model | current = registerChoice model.current }, Cmd.none)
 
         Resolve ->
             (model, Cmd.none)
@@ -145,5 +139,22 @@ viewGameInfo showButton gameInfo =
         )
 
 
+port event : (String -> msg) -> Sub msg
+
+
 subscriptions : Model -> Sub Message
-subscriptions _ = Sub.none
+subscriptions _ = Sub.batch
+                  [
+                   event fromType
+                  ]
+
+
+fromType : String -> Message
+fromType message =
+    if message == "registration" then
+        PlayerRegistered
+    else
+        if message == "pick" then
+            ChoiceMade
+        else
+            DoNothing

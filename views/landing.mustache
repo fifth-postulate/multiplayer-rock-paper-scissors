@@ -23,22 +23,23 @@
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/rockpaperscissors.js"></script>
         <script>
-         var socket = io();
-         socket.emit('admin', { 'gameId': '{{ gameId }}' });
-         socket.on('event', function(event){
-             console.log(event);
-         });
-
          var base = window.location.protocol + '//' + window.location.host;
          var container = document.getElementById('container');
-         var app = Elm.RockPaperScissors.SignPost.embed(container, {
+         var signPostApp = Elm.RockPaperScissors.SignPost.embed(container, {
              'base': base,
              'gameId': '{{ gameId }}'
          });
 
          var adminPanel = document.getElementById('adminpanel');
-         var app = Elm.RockPaperScissors.AdminPanel.embed(adminPanel, {
+         var adminPanelApp = Elm.RockPaperScissors.AdminPanel.embed(adminPanel, {
              'gameId': '{{ gameId }}'
+         });
+
+         var socket = io();
+         socket.emit('admin', { 'gameId': '{{ gameId }}' });
+         socket.on('event', function(event){
+             console.log(event);
+             adminPanelApp.ports.event.send(event.type);
          });
         </script>
     </body>
