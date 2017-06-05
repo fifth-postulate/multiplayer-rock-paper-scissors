@@ -37,6 +37,8 @@ app.post('/respond', function(req, res){
     const gameId = req.body.gameId;
     const playerId = req.body.playerId;
     const choice = req.body.choice;
+    const game = repository.load(gameId);
+    game.pick(playerId, choice);
     res.render('finish', { gameId: gameId, playerId: playerId, choice: choice });
 });
 
@@ -46,4 +48,13 @@ http.listen(port, function(){
 
 io.on('connection', function(socket){
     console.log('connection established');
+
+    socket.on('admin', function(data){
+        const gameId = data.gameId;
+        const game = repository.load(gameId);
+        game.register(function(event){
+            console.log(event);
+            socket.emit('event', event);
+        });
+    });
 });
