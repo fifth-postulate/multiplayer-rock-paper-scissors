@@ -22,6 +22,10 @@
         <script src="/js/signpost.js"></script>
         <script>
          var socket = io();
+         socket.emit('admin', { 'gameId': '{{ gameId }}' });
+         socket.on('event', function(event){
+             console.log(event);
+         });
 
          var container = document.getElementById('container');
          var app = Elm.RockPaperScissors.SignPost.embed(container, {
