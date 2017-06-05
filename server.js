@@ -22,24 +22,30 @@ app.use(express.static('resources'));
 
 app.post('/start', function(req, res){
     let game = new Game();
-    repository.save(game);
-    res.render('landing', { gameId: game.id });
+    repository.save(game, function(error){
+        if (error) { /* TODO handle error while saving */ }
+        res.render('landing', { gameId: game.id });
+    });
 });
 
 app.get('/join', function(req, res){
     const gameId = req.query.gameId;
-    const game = repository.load(gameId);
-    const playerId = game.registerPlayer();
-    res.render('round', { gameId: gameId, playerId: playerId });
+    repository.load(gameId, function(error, game){
+        if (error) { /* TODO handle error while registering player */ }
+        const playerId = game.registerPlayer();
+        res.render('round', { gameId: gameId, playerId: playerId });
+    });
 });
 
 app.post('/respond', function(req, res){
     const gameId = req.body.gameId;
     const playerId = req.body.playerId;
     const choice = req.body.choice;
-    const game = repository.load(gameId);
-    game.pick(playerId, choice);
-    res.render('finish', { gameId: gameId, playerId: playerId, choice: choice });
+    repository.load(gameId, function(error, game){
+        if (error) { /* TODO handle error while player responding */ }
+        game.pick(playerId, choice);
+        res.render('finish', { gameId: gameId, playerId: playerId, choice: choice });
+    });
 });
 
 http.listen(port, function(){
@@ -51,10 +57,12 @@ io.on('connection', function(socket){
 
     socket.on('admin', function(data){
         const gameId = data.gameId;
-        const game = repository.load(gameId);
-        game.register(function(event){
-            console.log(event);
-            socket.emit('event', event);
+        const game = repository.load(gameId, function(error, game){
+            if (error) { /* TODO handle error while admin registers */ }
+            game.register(function(event){
+                console.log(event);
+                socket.emit('event', event);
+            });
         });
     });
 });
