@@ -4,7 +4,8 @@ port module RockPaperScissors.AdminPanel exposing (main)
 import Html
 import Html.Attributes as Attribute
 import Html.Events as Event
-
+import Http
+import Json.Decode as Decode
 
 main : Program Flags Model Message
 main =
@@ -49,6 +50,7 @@ type Message =
     | PlayerRegistered
     | ChoiceMade
     | Resolve
+    | Resolved (Result Http.Error String)
     | NextGame GameId
 
 
@@ -74,6 +76,9 @@ update message model =
             ({ model | current = registerChoice model.current }, Cmd.none)
 
         Resolve ->
+            (model, resolve model)
+
+        Resolved (_) ->
             (model, Cmd.none)
 
         NextGame gameId ->
@@ -93,6 +98,18 @@ registerPlayer gameInfo =
 registerChoice : GameInfo -> GameInfo
 registerChoice gameInfo =
     { gameInfo | choicesMade = gameInfo.choicesMade + 1 }
+
+
+resolve : Model -> Cmd Message
+resolve model =
+    let
+        url =
+            "/resolve?gameId=" ++ model.current.gameId
+
+        request =
+            Http.post url Http.emptyBody Decode.string
+    in
+        Http.send Resolved request 
 
 
 view : Model -> Html.Html Message

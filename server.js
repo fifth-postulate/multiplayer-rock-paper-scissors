@@ -53,7 +53,7 @@ app.post('/resolve', function(req, res){
     repository.load(gameId, function(error, game){
         if (error) { /* TODO handle error while resolving game */ }
         game.resolve();
-        res.statusCode = 200;
+        res.status(200).send(game.id);
         res.end();
     });
 });
