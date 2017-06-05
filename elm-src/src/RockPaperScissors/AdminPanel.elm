@@ -2,6 +2,7 @@ module RockPaperScissors.AdminPanel exposing (main)
 
 
 import Html
+import Html.Attributes as Attribute
 import Html.Events as Event
 
 
@@ -115,12 +116,26 @@ view model =
 viewGameInfo : GameInfo -> Html.Html Message
 viewGameInfo gameInfo =
     Html.div
-        []
+        [ Attribute.class "game" ]
         [
-          Html.span [] [ Html.text ("id: " ++ (toString gameInfo.gameId)) ]
-        , Html.span [] [ Html.text ("registered players: " ++ (toString gameInfo.registeredPlayers)) ]
-        , Html.span [] [ Html.text ("choices made: " ++ (toString gameInfo.choicesMade)) ]
-        , Html.button [ Event.onClick Resolve ] [ Html.text "resolve" ]
+          Html.span [ Attribute.class "id" ] [ Html.text ("id: " ++ gameInfo.gameId) ]
+        , Html.span [ Attribute.classList
+                          [
+                            ("player", True)
+                          , ("count", True)
+                          ] ] [ Html.text ("players: " ++ (toString gameInfo.registeredPlayers)) ]
+        , Html.span [Attribute.classList
+                          [
+                            ("choices", True)
+                          , ("count", True)
+                          ] ] [ Html.text ("choices: " ++ (toString gameInfo.choicesMade)) ]
+        , Html.button [
+                Attribute.classList
+                    [
+                      ("btn", True)
+                    , ("btn-primary", True)
+                    ]
+              , Event.onClick Resolve ] [ Html.text "resolve" ]
         ]
 
 

@@ -12,3 +12,20 @@
     padding: 14px 24px;
     font-size: 21px;
 }
+
+.game:first-child {
+    background-color: green;
+    color: white;
+}
+
+.game {
+    background: gray;
+    color: black;
+    border-radius: 6px;
+    padding: 6px;
+    text-align: center;
+}
+
+.game span {
+    margin-right: 2em;
+}
