@@ -104,39 +104,45 @@ registerChoice gameInfo =
 view : Model -> Html.Html Message
 view model =
     let
-        currentView = [viewGameInfo model.current]
+        currentView = [viewGameInfo True model.current]
 
-        historyView = List.map viewGameInfo model.history
+        historyView = List.map (viewGameInfo False) model.history
     in
         Html.div
             []
             (List.concat [currentView, historyView])
 
 
-viewGameInfo : GameInfo -> Html.Html Message
-viewGameInfo gameInfo =
+viewGameInfo : Bool -> GameInfo -> Html.Html Message
+viewGameInfo showButton gameInfo =
     Html.div
         [ Attribute.class "game" ]
-        [
-          Html.span [ Attribute.class "id" ] [ Html.text ("id: " ++ gameInfo.gameId) ]
-        , Html.span [ Attribute.classList
+        (List.concat
+             [
+               [
+                 Html.span [ Attribute.class "id" ] [ Html.text ("id: " ++ gameInfo.gameId) ]
+               , Html.span [ Attribute.classList
+                                 [
+                                  ("player", True)
+                                 , ("count", True)
+                                 ] ] [ Html.text ("players: " ++ (toString gameInfo.registeredPlayers)) ]
+               , Html.span [Attribute.classList
+                                [
+                                 ("choices", True)
+                                , ("count", True)
+                                ] ] [ Html.text ("choices: " ++ (toString gameInfo.choicesMade)) ]
+               ]
+             , [
+                 Html.button [
+                      Attribute.classList
                           [
-                            ("player", True)
-                          , ("count", True)
-                          ] ] [ Html.text ("players: " ++ (toString gameInfo.registeredPlayers)) ]
-        , Html.span [Attribute.classList
-                          [
-                            ("choices", True)
-                          , ("count", True)
-                          ] ] [ Html.text ("choices: " ++ (toString gameInfo.choicesMade)) ]
-        , Html.button [
-                Attribute.classList
-                    [
-                      ("btn", True)
-                    , ("btn-primary", True)
-                    ]
-              , Event.onClick Resolve ] [ Html.text "resolve" ]
-        ]
+                           ("btn", True)
+                          , ("btn-primary", True)
+                          ]
+                     , Event.onClick Resolve ] [ Html.text "resolve" ]
+               ]
+             ]
+        )
 
 
 subscriptions : Model -> Sub Message

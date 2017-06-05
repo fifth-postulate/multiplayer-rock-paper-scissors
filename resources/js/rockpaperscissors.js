@@ -8844,121 +8844,134 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPane
 	return {ctor: 'NextGame', _0: a};
 };
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve = {ctor: 'Resolve'};
-var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo = function (gameInfo) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('game'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$span,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('id'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(
-						A2(_elm_lang$core$Basics_ops['++'], 'id: ', gameInfo.gameId)),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo = F2(
+	function (showButton, gameInfo) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
 				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$span,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$classList(
-							{
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'player', _1: true},
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'count', _1: true},
-									_1: {ctor: '[]'}
-								}
-							}),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								'players: ',
-								_elm_lang$core$Basics$toString(gameInfo.registeredPlayers))),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
+				_0: _elm_lang$html$Html_Attributes$class('game'),
+				_1: {ctor: '[]'}
+			},
+			_elm_lang$core$List$concat(
+				{
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$span,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$classList(
-								{
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'choices', _1: true},
-									_1: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'count', _1: true},
-										_1: {ctor: '[]'}
-									}
-								}),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									'choices: ',
-									_elm_lang$core$Basics$toString(gameInfo.choicesMade))),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
+					_0: {
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$button,
+							_elm_lang$html$Html$span,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$classList(
-									{
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'btn', _1: true},
-										_1: {
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'btn-primary', _1: true},
-											_1: {ctor: '[]'}
-										}
-									}),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onClick(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve),
-									_1: {ctor: '[]'}
-								}
+								_0: _elm_lang$html$Html_Attributes$class('id'),
+								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('resolve'),
+								_0: _elm_lang$html$Html$text(
+									A2(_elm_lang$core$Basics_ops['++'], 'id: ', gameInfo.gameId)),
 								_1: {ctor: '[]'}
 							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$classList(
+										{
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'player', _1: true},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'count', _1: true},
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											'players: ',
+											_elm_lang$core$Basics$toString(gameInfo.registeredPlayers))),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$span,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$classList(
+											{
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'choices', _1: true},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'count', _1: true},
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												'choices: ',
+												_elm_lang$core$Basics$toString(gameInfo.choicesMade))),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$classList(
+										{
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'btn', _1: true},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'btn-primary', _1: true},
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('resolve'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						},
 						_1: {ctor: '[]'}
 					}
-				}
-			}
-		});
-};
+				}));
+	});
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$view = function (model) {
-	var historyView = A2(_elm_lang$core$List$map, _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo, model.history);
+	var historyView = A2(
+		_elm_lang$core$List$map,
+		_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo(false),
+		model.history);
 	var currentView = {
 		ctor: '::',
-		_0: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo(model.current),
+		_0: A2(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo, true, model.current),
 		_1: {ctor: '[]'}
 	};
 	return A2(
