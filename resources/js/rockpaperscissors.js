@@ -9631,6 +9631,35 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPane
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve = {ctor: 'Resolve'};
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo = F2(
 	function (showButton, gameInfo) {
+		var button = showButton ? {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$button,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$classList(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'btn', _1: true},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'btn-primary', _1: true},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onClick(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve),
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('resolve'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		} : {ctor: '[]'};
 		return A2(
 			_elm_lang$html$Html$div,
 			{
@@ -9716,35 +9745,7 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPane
 					},
 					_1: {
 						ctor: '::',
-						_0: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$button,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$classList(
-										{
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'btn', _1: true},
-											_1: {
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'btn-primary', _1: true},
-												_1: {ctor: '[]'}
-											}
-										}),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve),
-										_1: {ctor: '[]'}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('resolve'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						},
+						_0: button,
 						_1: {ctor: '[]'}
 					}
 				}));

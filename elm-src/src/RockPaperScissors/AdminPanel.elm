@@ -109,7 +109,7 @@ resolve model =
         request =
             Http.post url Http.emptyBody Decode.string
     in
-        Http.send Resolved request 
+        Http.send Resolved request
 
 
 view : Model -> Html.Html Message
@@ -126,24 +126,10 @@ view model =
 
 viewGameInfo : Bool -> GameInfo -> Html.Html Message
 viewGameInfo showButton gameInfo =
-    Html.div
-        [ Attribute.class "game" ]
-        (List.concat
-             [
-               [
-                 Html.span [ Attribute.class "id" ] [ Html.text ("id: " ++ gameInfo.gameId) ]
-               , Html.span [ Attribute.classList
-                                 [
-                                  ("player", True)
-                                 , ("count", True)
-                                 ] ] [ Html.text ("players: " ++ (toString gameInfo.registeredPlayers)) ]
-               , Html.span [Attribute.classList
-                                [
-                                 ("choices", True)
-                                , ("count", True)
-                                ] ] [ Html.text ("choices: " ++ (toString gameInfo.choicesMade)) ]
-               ]
-             , [
+    let
+        button =
+            if showButton then
+                [
                  Html.button [
                       Attribute.classList
                           [
@@ -152,7 +138,28 @@ viewGameInfo showButton gameInfo =
                           ]
                      , Event.onClick Resolve ] [ Html.text "resolve" ]
                ]
-             ]
+            else
+                []
+    in
+        Html.div
+            [ Attribute.class "game" ]
+            (List.concat
+                 [
+                   [
+                     Html.span [ Attribute.class "id" ] [ Html.text ("id: " ++ gameInfo.gameId) ]
+                   , Html.span [ Attribute.classList
+                                     [
+                                       ("player", True)
+                                     , ("count", True)
+                                     ] ] [ Html.text ("players: " ++ (toString gameInfo.registeredPlayers)) ]
+                   , Html.span [Attribute.classList
+                                    [
+                                      ("choices", True)
+                                    , ("count", True)
+                                    ] ] [ Html.text ("choices: " ++ (toString gameInfo.choicesMade)) ]
+                   ]
+                 , button
+                 ]
         )
 
 
