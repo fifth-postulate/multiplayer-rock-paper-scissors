@@ -16084,7 +16084,10 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$qrcodeView = function (model) {
-	var message = A2(_elm_lang$core$Basics_ops['++'], '/join?gameId=', model.gameId);
+	var message = A2(
+		_elm_lang$core$Basics_ops['++'],
+		model.base,
+		A2(_elm_lang$core$Basics_ops['++'], '/join?gameId=', model.gameId));
 	return A2(
 		_elm_lang$core$Result$withDefault,
 		_elm_lang$html$Html$text('Could not create QRCode'),
@@ -16177,14 +16180,20 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$
 	{init: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$init, update: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$update, view: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$view, subscriptions: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$subscriptions})(
 	A2(
 		_elm_lang$core$Json_Decode$andThen,
-		function (gameId) {
-			return _elm_lang$core$Json_Decode$succeed(
-				{gameId: gameId});
+		function (base) {
+			return A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (gameId) {
+					return _elm_lang$core$Json_Decode$succeed(
+						{base: base, gameId: gameId});
+				},
+				A2(_elm_lang$core$Json_Decode$field, 'gameId', _elm_lang$core$Json_Decode$string));
 		},
-		A2(_elm_lang$core$Json_Decode$field, 'gameId', _elm_lang$core$Json_Decode$string)));
-var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$Model = function (a) {
-	return {gameId: a};
-};
+		A2(_elm_lang$core$Json_Decode$field, 'base', _elm_lang$core$Json_Decode$string)));
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$Model = F2(
+	function (a, b) {
+		return {base: a, gameId: b};
+	});
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$Update = function (a) {
 	return {ctor: 'Update', _0: a};
 };

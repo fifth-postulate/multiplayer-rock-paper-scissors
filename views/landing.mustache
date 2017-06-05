@@ -27,8 +27,10 @@
              console.log(event);
          });
 
+         var base = window.location.protocol + '//' + window.location.host;
          var container = document.getElementById('container');
          var app = Elm.RockPaperScissors.SignPost.embed(container, {
+             'base': base,
              'gameId': '{{ gameId }}'
          });
         </script>

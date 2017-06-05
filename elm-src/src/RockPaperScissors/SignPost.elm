@@ -27,7 +27,8 @@ type alias Flags = Model
 
 type alias Model =
     {
-        gameId: String
+      base: String
+    , gameId: String
     }
 
 
@@ -62,7 +63,7 @@ view model =
 qrcodeView : Model -> Html.Html Message
 qrcodeView model =
     let
-        message = "/join?gameId=" ++ model.gameId
+        message = model.base ++ "/join?gameId=" ++ model.gameId
     in
         QRCode.encode message
             |> Result.map QRCode.toSvg
