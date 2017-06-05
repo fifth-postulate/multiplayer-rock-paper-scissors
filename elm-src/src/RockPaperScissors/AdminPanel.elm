@@ -5,9 +5,9 @@ import Html
 import Html.Events as Event
 
 
-main : Program Never Model Message
+main : Program Flags Model Message
 main =
-    Html.program
+    Html.programWithFlags
     {
       init = init
     , update = update
@@ -16,8 +16,13 @@ main =
     }
 
 
-init : (Model, Cmd Message)
-init = (emptyModel "start", Cmd.none)
+init : Flags -> (Model, Cmd Message)
+init flag =
+    (emptyModel flag.gameId, Cmd.none)
+
+
+type alias Flags =
+    { gameId: String }
 
 
 type alias Model =
