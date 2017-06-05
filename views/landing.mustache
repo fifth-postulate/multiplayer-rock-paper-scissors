@@ -16,10 +16,12 @@
                 <a href="/join?gameId={{ gameId }}">/join?gameId={{ gameId }}</a>
             </div>
         </div>
+        <div id="adminpanel" class="container">
+        </div>
         <script src="/components/jquery/dist/jquery.min.js"></script>
         <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/signpost.js"></script>
+        <script src="/js/rockpaperscissors.js"></script>
         <script>
          var socket = io();
          socket.emit('admin', { 'gameId': '{{ gameId }}' });
@@ -31,6 +33,11 @@
          var container = document.getElementById('container');
          var app = Elm.RockPaperScissors.SignPost.embed(container, {
              'base': base,
+             'gameId': '{{ gameId }}'
+         });
+
+         var adminPanel = document.getElementById('adminpanel');
+         var app = Elm.RockPaperScissors.AdminPanel.embed(adminPanel, {
              'gameId': '{{ gameId }}'
          });
         </script>

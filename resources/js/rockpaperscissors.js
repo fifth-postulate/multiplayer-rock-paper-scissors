@@ -8304,6 +8304,121 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
+var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$html$Html_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'checked',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$bool);
+var _elm_lang$html$Html_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'value',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
+var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$html$Html_Events$onFocus = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onBlur = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_elm_lang$html$Html_Events$defaultOptions,
+	{preventDefault: true});
+var _elm_lang$html$Html_Events$onSubmit = function (msg) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'submit',
+		_elm_lang$html$Html_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onCheck = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
+};
+var _elm_lang$html$Html_Events$onInput = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
+
 var _elm_lang$svg$Svg$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _elm_lang$svg$Svg$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$svg$Svg$svgNamespace = A2(
@@ -8644,6 +8759,194 @@ var _elm_lang$svg$Svg_Attributes$additive = _elm_lang$virtual_dom$VirtualDom$att
 var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$attribute('accumulate');
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
+
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$subscriptions = function (_p0) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$registerChoice = function (gameInfo) {
+	return _elm_lang$core$Native_Utils.update(
+		gameInfo,
+		{choicesMade: gameInfo.choicesMade + 1});
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$registerPlayer = function (gameInfo) {
+	return _elm_lang$core$Native_Utils.update(
+		gameInfo,
+		{registeredPlayers: gameInfo.registeredPlayers + 1});
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$emptyGameInfo = function (gameId) {
+	return {gameId: gameId, registeredPlayers: 0, choicesMade: 0};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$update = F2(
+	function (message, model) {
+		var _p1 = message;
+		switch (_p1.ctor) {
+			case 'DoNothing':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'PlayerRegistered':
+				return _elm_lang$core$Native_Utils.eq(_p1._0, model.current.gameId) ? {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							current: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$registerPlayer(model.current)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				} : {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'ChoiceMade':
+				return _elm_lang$core$Native_Utils.eq(_p1._0, model.current.gameId) ? {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							current: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$registerChoice(model.current)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				} : {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'Resolve':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			default:
+				var current = _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$emptyGameInfo(_p1._0);
+				var history = {ctor: '::', _0: model.current, _1: model.history};
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{current: current, history: history}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$emptyModel = function (gameId) {
+	return {
+		history: {ctor: '[]'},
+		current: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$emptyGameInfo(gameId)
+	};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$init = function (flag) {
+	return {
+		ctor: '_Tuple2',
+		_0: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$emptyModel(flag.gameId),
+		_1: _elm_lang$core$Platform_Cmd$none
+	};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Flags = function (a) {
+	return {gameId: a};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Model = F2(
+	function (a, b) {
+		return {history: a, current: b};
+	});
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$GameInfo = F3(
+	function (a, b, c) {
+		return {gameId: a, registeredPlayers: b, choicesMade: c};
+	});
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$NextGame = function (a) {
+	return {ctor: 'NextGame', _0: a};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve = {ctor: 'Resolve'};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo = function (gameInfo) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$span,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'id: ',
+							_elm_lang$core$Basics$toString(gameInfo.gameId))),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$span,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'registered players: ',
+								_elm_lang$core$Basics$toString(gameInfo.registeredPlayers))),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'choices made: ',
+									_elm_lang$core$Basics$toString(gameInfo.choicesMade))),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$Resolve),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('resolve'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$view = function (model) {
+	var historyView = A2(_elm_lang$core$List$map, _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo, model.history);
+	var currentView = {
+		ctor: '::',
+		_0: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$viewGameInfo(model.current),
+		_1: {ctor: '[]'}
+	};
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		_elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: currentView,
+				_1: {
+					ctor: '::',
+					_0: historyView,
+					_1: {ctor: '[]'}
+				}
+			}));
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$main = _elm_lang$html$Html$programWithFlags(
+	{init: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$init, update: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$update, view: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$view, subscriptions: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$subscriptions})(
+	A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (gameId) {
+			return _elm_lang$core$Json_Decode$succeed(
+				{gameId: gameId});
+		},
+		A2(_elm_lang$core$Json_Decode$field, 'gameId', _elm_lang$core$Json_Decode$string)));
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$ChoiceMade = function (a) {
+	return {ctor: 'ChoiceMade', _0: a};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$PlayerRegistered = function (a) {
+	return {ctor: 'PlayerRegistered', _0: a};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$DoNothing = {ctor: 'DoNothing'};
 
 var _pablohirafuji$elm_qrcode$QRCode_ECLevel$H = {ctor: 'H'};
 var _pablohirafuji$elm_qrcode$QRCode_ECLevel$Q = {ctor: 'Q'};
@@ -16200,6 +16503,11 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$DoNothing = {ctor: 'DoNothing'};
 
 var Elm = {};
+Elm['RockPaperScissors'] = Elm['RockPaperScissors'] || {};
+Elm['RockPaperScissors']['AdminPanel'] = Elm['RockPaperScissors']['AdminPanel'] || {};
+if (typeof _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$main !== 'undefined') {
+    _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPanel$main(Elm['RockPaperScissors']['AdminPanel'], 'RockPaperScissors.AdminPanel', undefined);
+}
 Elm['RockPaperScissors'] = Elm['RockPaperScissors'] || {};
 Elm['RockPaperScissors']['SignPost'] = Elm['RockPaperScissors']['SignPost'] || {};
 if (typeof _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_SignPost$main !== 'undefined') {
