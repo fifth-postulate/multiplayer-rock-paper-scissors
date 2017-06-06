@@ -246,5 +246,17 @@ describe('In a game', function(){
 
             assert.sameMembers(game.winners(), before);
         });
+
+        it('pick an alternative when you are not registered', function(){
+            playerTwoId = game.registerPlayer();
+            notAPlayerId = 'not a player identifier';
+            game.pick(playerOneId, 'paper');
+            game.pick(playerTwoId, 'paper');
+            game.pick(notAPlayerId, 'scissors');
+
+            const winners = game.winners();
+
+            assert.sameMembers(winners, [playerOneId, playerTwoId]);
+        });
     });
 });

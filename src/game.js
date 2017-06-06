@@ -32,8 +32,10 @@ Game.prototype.registeredPlayers = function(){
     return players;
 };
 Game.prototype.pick = function(playerId, choice){
-    this.picks[playerId] = choice;
-    this.notify({ 'type': 'pick', 'gameId': this.id, 'playerId': playerId, 'choice': choice });
+    if (this.players[playerId]) {
+        this.picks[playerId] = choice;
+        this.notify({ 'type': 'pick', 'gameId': this.id, 'playerId': playerId, 'choice': choice });
+    }
 };
 Game.prototype.winners = function(){
     if (!this.resolution) { this.resolve(); }
