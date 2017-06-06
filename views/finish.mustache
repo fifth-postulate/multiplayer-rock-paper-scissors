@@ -17,9 +17,17 @@
         </div>
         <script src="/components/jquery/dist/jquery.min.js"></script>
         <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/js/rockpaperscissors.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
          var socket = io();
+
+         var container = document.getElementById('container');
+         Elm.RockPaperScissors.ResultPanel.embed(container, {
+             'gameId': '{{ gameId }}',
+             'playerId': '{{ playerId }}',
+             'choice' : '{{ choice }}'
+         });
         </script>
     </body>
 </html>
