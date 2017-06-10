@@ -85,4 +85,25 @@ io.on('connection', function(socket){
             });
         });
     });
+
+    socket.on('player', function(data){
+        const playerId = data.playerId;
+        const gameId = data.gameId;
+        const game = repository.load(gameId, function(error, game){
+            if (error) { /* TODO handle error while registering finished player */ }
+            game.register(function(event){
+                if (event.type === 'resolution'){
+                    let winners = game.winners();
+                    if (winners.indexOf(playerId) >= 0) { // player won
+                        socket.emit('message', { message: 'You won!' });
+                        if (winners.length !== 1) {
+                            socket.emit('gameId', 'banaan');
+                        }
+                    } else { // player lost
+                        socket.emit('message', { message: 'You lost :-('});
+                    }
+                }
+            });
+        });
+    });
 });

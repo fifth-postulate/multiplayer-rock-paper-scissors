@@ -17,16 +17,27 @@
         </div>
         <script src="/components/jquery/dist/jquery.min.js"></script>
         <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/js/rockpaperscissors.js"></script>
         <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/rockpaperscissors.js"></script>
         <script>
          var socket = io();
 
          var container = document.getElementById('container');
-         Elm.RockPaperScissors.ResultPanel.embed(container, {
+         var resultPanel = Elm.RockPaperScissors.ResultPanel.embed(container, {
              'gameId': '{{ gameId }}',
              'playerId': '{{ playerId }}',
              'choice' : '{{ choice }}'
+         });
+
+         var socket = io();
+         socket.emit('player', { 'gameId': '{{ gameId }}', 'playerId': '{{ playerId }}' });
+         socket.on('message', function(event){
+             console.log('message received');
+             resultPanel.ports.message.send(event.message);
+         });
+         socket.on('gameId', function(event){
+             console.log('gameId received');
+             resultPanel.ports.gameId(even.gameId);
          });
         </script>
     </body>
