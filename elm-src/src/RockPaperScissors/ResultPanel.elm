@@ -72,11 +72,23 @@ view model =
                 Just m -> m
 
                 Nothing -> "You just played " ++ model.choice
+
+        continue =
+            case model.nextGameId of
+                Just gameId ->
+                    [
+                      Html.p [] [ Html.text "but others won as well" ]
+                    , Html.p [] [ Html.text ("join " ++ gameId) ]
+                    ]
+
+                Nothing -> []
     in
         Html.div [ Attribute.class "jumbotron" ]
-            [
-             Html.h1 [] [ Html.text message ]
-            ]
+            (List.concat
+                [
+                  [ Html.h1 [] [ Html.text message ] ]
+                , continue
+                ])
 
 
 port message : (String -> msg) -> Sub msg
