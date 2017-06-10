@@ -9798,14 +9798,11 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPane
 		},
 		A2(_elm_lang$core$Json_Decode$field, 'gameId', _elm_lang$core$Json_Decode$string)));
 
-var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$subscriptions = function (_p0) {
-	return _elm_lang$core$Platform_Sub$none;
-};
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$view = function (model) {
 	var message = function () {
-		var _p1 = model.message;
-		if (_p1.ctor === 'Just') {
-			return _p1._0;
+		var _p0 = model.message;
+		if (_p0.ctor === 'Just') {
+			return _p0._0;
 		} else {
 			return A2(_elm_lang$core$Basics_ops['++'], 'You just played ', model.choice);
 		}
@@ -9832,8 +9829,8 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPan
 };
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$update = F2(
 	function (message, model) {
-		var _p2 = message;
-		switch (_p2.ctor) {
+		var _p1 = message;
+		switch (_p1.ctor) {
 			case 'DoNothing':
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'UpdateMessage':
@@ -9842,7 +9839,7 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPan
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							message: _elm_lang$core$Maybe$Just(_p2._0)
+							message: _elm_lang$core$Maybe$Just(_p1._0)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -9852,7 +9849,7 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPan
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							nextGameId: _elm_lang$core$Maybe$Just(_p2._0)
+							nextGameId: _elm_lang$core$Maybe$Just(_p1._0)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -9864,6 +9861,34 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPan
 		_0: {gameId: flag.gameId, playerId: flag.playerId, choice: flag.choice, message: _elm_lang$core$Maybe$Nothing, nextGameId: _elm_lang$core$Maybe$Nothing},
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$message = _elm_lang$core$Native_Platform.incomingPort('message', _elm_lang$core$Json_Decode$string);
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$gameId = _elm_lang$core$Native_Platform.incomingPort('gameId', _elm_lang$core$Json_Decode$string);
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$Flags = F3(
+	function (a, b, c) {
+		return {gameId: a, playerId: b, choice: c};
+	});
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$Model = F5(
+	function (a, b, c, d, e) {
+		return {gameId: a, playerId: b, choice: c, message: d, nextGameId: e};
+	});
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$UpdateNextGameId = function (a) {
+	return {ctor: 'UpdateNextGameId', _0: a};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$UpdateMessage = function (a) {
+	return {ctor: 'UpdateMessage', _0: a};
+};
+var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$subscriptions = function (_p2) {
+	return _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$message(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$UpdateMessage),
+			_1: {
+				ctor: '::',
+				_0: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$gameId(_fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$UpdateNextGameId),
+				_1: {ctor: '[]'}
+			}
+		});
 };
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$main = _elm_lang$html$Html$programWithFlags(
 	{init: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$init, update: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$update, view: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$view, subscriptions: _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$subscriptions})(
@@ -9884,20 +9909,6 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPan
 				A2(_elm_lang$core$Json_Decode$field, 'gameId', _elm_lang$core$Json_Decode$string));
 		},
 		A2(_elm_lang$core$Json_Decode$field, 'choice', _elm_lang$core$Json_Decode$string)));
-var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$Flags = F3(
-	function (a, b, c) {
-		return {gameId: a, playerId: b, choice: c};
-	});
-var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$Model = F5(
-	function (a, b, c, d, e) {
-		return {gameId: a, playerId: b, choice: c, message: d, nextGameId: e};
-	});
-var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$UpdateNextGameId = function (a) {
-	return {ctor: 'UpdateNextGameId', _0: a};
-};
-var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$UpdateMessage = function (a) {
-	return {ctor: 'UpdateMessage', _0: a};
-};
 var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPanel$DoNothing = {ctor: 'DoNothing'};
 
 var _pablohirafuji$elm_qrcode$QRCode_ECLevel$H = {ctor: 'H'};

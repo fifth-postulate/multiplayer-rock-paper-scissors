@@ -1,4 +1,4 @@
-module RockPaperScissors.ResultPanel exposing (main)
+port module RockPaperScissors.ResultPanel exposing (main)
 
 
 import Html
@@ -78,6 +78,15 @@ view model =
              Html.h1 [] [ Html.text message ]
             ]
 
+
+port message : (String -> msg) -> Sub msg
+port gameId : (String -> msg) -> Sub msg
+
+
 subscriptions : Model -> Sub Message
 subscriptions _ =
-    Sub.none
+    Sub.batch
+        [
+          message UpdateMessage
+        , gameId UpdateNextGameId
+        ]
