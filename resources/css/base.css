@@ -19,6 +19,10 @@
     margin-bottom: 15px;
 }
 
+.finished.game:first-child {
+    background-color: gray;
+}
+
 .game {
     background: gray;
     color: black;
