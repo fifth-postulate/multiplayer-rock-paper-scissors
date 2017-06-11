@@ -76,10 +76,13 @@ view model =
         continue =
             case model.nextGameId of
                 Just gameId ->
-                    [
-                      Html.p [] [ Html.text "but others won as well" ]
-                    , Html.p [] [ Html.text ("join " ++ gameId) ]
-                    ]
+                    let
+                        href = "/join?gameId=" ++ gameId
+                    in
+                        [
+                          Html.p [] [ Html.text "but others won as well" ]
+                        , Html.p [] [ Html.a [ Attribute.href href ] [ Html.text href ] ]
+                        ]
 
                 Nothing -> []
     in

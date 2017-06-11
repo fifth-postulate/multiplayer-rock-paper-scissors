@@ -9802,6 +9802,7 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPan
 	var $continue = function () {
 		var _p0 = model.nextGameId;
 		if (_p0.ctor === 'Just') {
+			var href = A2(_elm_lang$core$Basics_ops['++'], '/join?gameId=', _p0._0);
 			return {
 				ctor: '::',
 				_0: A2(
@@ -9819,8 +9820,18 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_ResultPan
 						{ctor: '[]'},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text(
-								A2(_elm_lang$core$Basics_ops['++'], 'join ', _p0._0)),
+							_0: A2(
+								_elm_lang$html$Html$a,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$href(href),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(href),
+									_1: {ctor: '[]'}
+								}),
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
