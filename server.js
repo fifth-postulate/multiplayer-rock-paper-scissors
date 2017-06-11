@@ -81,7 +81,8 @@ io.on('connection', function(socket){
                             console.log(event);
                             socket.emit('event', event);
                         });
-                        repository.save(game, function(error){
+                        repository.save(nextGame, function(error){
+                            if (error) { /* TODO handle error while saving */}
                             socket.emit('event', { gameId: nextGame.id });
                             winners.forEach(function(playerId){
                                 let socket = playerSockets[playerId];
