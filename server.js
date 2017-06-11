@@ -62,6 +62,7 @@ http.listen(port, function(){
     console.log('listening on port', port);
 });
 
+const playerSockets = {};
 io.on('connection', function(socket){
     console.log('connection established');
 
@@ -88,6 +89,8 @@ io.on('connection', function(socket){
 
     socket.on('player', function(data){
         const playerId = data.playerId;
+        socket.playerId = playerId;
+        playerSockets[socket.playerId] = socket;
         const gameId = data.gameId;
         const game = repository.load(gameId, function(error, game){
             if (error) { /* TODO handle error while registering finished player */ }
@@ -105,5 +108,12 @@ io.on('connection', function(socket){
                 }
             });
         });
+    });
+
+    socket.on('disconnect', function(){
+        console.log('socket disconnected');
+        if (socket.playerId) {
+            delete playerSockets[socket.playerId];
+        }
     });
 });
