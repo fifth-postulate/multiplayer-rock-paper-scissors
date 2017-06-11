@@ -31,6 +31,7 @@ type alias Model =
     {
       history: List GameInfo
     , current: GameInfo
+    , finished: Bool
     }
 
 
@@ -52,11 +53,12 @@ type Message =
     | Resolve
     | Resolved (Result Http.Error String)
     | NextGame GameId
+    | Finish
 
 
 emptyModel : GameId -> Model
 emptyModel gameId =
-    { history = [], current = emptyGameInfo gameId }
+    { history = [], current = emptyGameInfo gameId, finished = False }
 
 
 emptyGameInfo : GameId -> GameInfo
@@ -89,6 +91,9 @@ update message model =
             in
                 ({ model | current = current, history = history }, Cmd.none)
 
+        Finish ->
+            ({ model | finished = True }, Cmd.none)
+
 
 registerPlayer : GameInfo -> GameInfo
 registerPlayer gameInfo =
@@ -115,7 +120,7 @@ resolve model =
 view : Model -> Html.Html Message
 view model =
     let
-        currentView = [viewGameInfo True model.current]
+        currentView = [viewGameInfo (not model.finished) model.current]
 
         historyView = List.map (viewGameInfo False) model.history
     in
@@ -133,8 +138,9 @@ viewGameInfo showButton gameInfo =
                  Html.button [
                       Attribute.classList
                           [
-                           ("btn", True)
+                            ("btn", True)
                           , ("btn-primary", True)
+                          , ("finished", showButton)
                           ]
                      , Event.onClick Resolve ] [ Html.text "resolve" ]
                ]
@@ -164,12 +170,14 @@ viewGameInfo showButton gameInfo =
 
 
 port event : (String -> msg) -> Sub msg
+port finish : (String -> msg) -> Sub msg
 
 
 subscriptions : Model -> Sub Message
 subscriptions _ = Sub.batch
                   [
-                   event fromType
+                    event fromType
+                  , finish fromArbitraryMessage
                   ]
 
 
@@ -185,3 +193,7 @@ fromType message =
                 DoNothing
             else
                 NextGame message
+
+
+fromArbitraryMessage : String -> Message
+fromArbitraryMessage _ = Finish
