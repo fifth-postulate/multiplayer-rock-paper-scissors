@@ -37,7 +37,7 @@
          });
          socket.on('gameId', function(event){
              console.log('gameId received');
-             resultPanel.ports.gameId(even.gameId);
+             resultPanel.ports.gameId.send(event.gameId);
          });
         </script>
     </body>

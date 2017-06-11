@@ -96,8 +96,8 @@ io.on('connection', function(socket){
                     let winners = game.winners();
                     if (winners.indexOf(playerId) >= 0) { // player won
                         socket.emit('message', { message: 'You won!' });
-                        if (winners.length !== 1) {
-                            socket.emit('gameId', 'banaan');
+                        if (winners.length > 1) {
+                            socket.emit('gameId', { gameId: 'banaan' });
                         }
                     } else { // player lost
                         socket.emit('message', { message: 'You lost :-('});
