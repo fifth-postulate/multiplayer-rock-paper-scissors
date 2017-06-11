@@ -74,14 +74,21 @@ io.on('connection', function(socket){
                 console.log(event);
                 socket.emit('event', event);
                 if (event.type === 'resolution') {
-                    const nextGame = new Game();
-                    nextGame.register(function(event){
-                        console.log(event);
-                        socket.emit('event', event);
-                    });
-                    repository.save(game, function(error){
-                        socket.emit('event', { gameId: nextGame.id });
-                    });
+                    const winners = game.winners();
+                    if (winners.length > 1) {
+                        const nextGame = new Game();
+                        nextGame.register(function(event){
+                            console.log(event);
+                            socket.emit('event', event);
+                        });
+                        repository.save(game, function(error){
+                            socket.emit('event', { gameId: nextGame.id });
+                            winners.forEach(function(playerId){
+                                let socket = playerSockets[playerId];
+                                socket.emit('gameId', { gameId: nextGame.id });
+                            });
+                       });
+                    }
                 }
             });
         });
@@ -99,9 +106,6 @@ io.on('connection', function(socket){
                     let winners = game.winners();
                     if (winners.indexOf(playerId) >= 0) { // player won
                         socket.emit('message', { message: 'You won!' });
-                        if (winners.length > 1) {
-                            socket.emit('gameId', { gameId: 'banaan' });
-                        }
                     } else { // player lost
                         socket.emit('message', { message: 'You lost :-('});
                     }
