@@ -9658,11 +9658,7 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPane
 							_1: {
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'btn-primary', _1: true},
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'finished', _1: showButton},
-									_1: {ctor: '[]'}
-								}
+								_1: {ctor: '[]'}
 							}
 						}),
 					_1: {
@@ -9682,7 +9678,16 @@ var _fifth_postulate$multiplayer_rock_paper_scissors$RockPaperScissors_AdminPane
 			_elm_lang$html$Html$div,
 			{
 				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('game'),
+				_0: _elm_lang$html$Html_Attributes$classList(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'finished', _1: !showButton},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'game', _1: true},
+							_1: {ctor: '[]'}
+						}
+					}),
 				_1: {ctor: '[]'}
 			},
 			_elm_lang$core$List$concat(

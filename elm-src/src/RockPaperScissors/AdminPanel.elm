@@ -140,7 +140,6 @@ viewGameInfo showButton gameInfo =
                           [
                             ("btn", True)
                           , ("btn-primary", True)
-                          , ("finished", showButton)
                           ]
                      , Event.onClick Resolve ] [ Html.text "resolve" ]
                ]
@@ -148,7 +147,7 @@ viewGameInfo showButton gameInfo =
                 []
     in
         Html.div
-            [ Attribute.class "game" ]
+            [ Attribute.classList [ ("finished", (not showButton)), ("game", True) ] ]
             (List.concat
                  [
                    [
