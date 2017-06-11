@@ -66,32 +66,32 @@ const playerSockets = {};
 io.on('connection', function(socket){
     console.log('connection established');
 
+    const gameHandlerFor = function(game){
+        return function(event){
+            console.log(event);
+            socket.emit('event', event);
+            if (event.type === 'resolution') {
+                const winners = game.winners();
+                if (winners.length > 1) {
+                    const nextGame = new Game();
+                    nextGame.register(gameHandlerFor(nextGame));
+                    repository.save(nextGame, function(error){
+                        if (error) { /* TODO handle error while saving */}
+                        socket.emit('event', { gameId: nextGame.id });
+                        winners.forEach(function(playerId){
+                            let socket = playerSockets[playerId];
+                            socket.emit('gameId', { gameId: nextGame.id });
+                        });
+                    });
+                }
+            }
+        };
+    };
     socket.on('admin', function(data){
         const gameId = data.gameId;
-        const game = repository.load(gameId, function(error, game){
+        repository.load(gameId, function(error, game){
             if (error) { /* TODO handle error while admin registers */ }
-            game.register(function(event){
-                console.log(event);
-                socket.emit('event', event);
-                if (event.type === 'resolution') {
-                    const winners = game.winners();
-                    if (winners.length > 1) {
-                        const nextGame = new Game();
-                        nextGame.register(function(event){
-                            console.log(event);
-                            socket.emit('event', event);
-                        });
-                        repository.save(nextGame, function(error){
-                            if (error) { /* TODO handle error while saving */}
-                            socket.emit('event', { gameId: nextGame.id });
-                            winners.forEach(function(playerId){
-                                let socket = playerSockets[playerId];
-                                socket.emit('gameId', { gameId: nextGame.id });
-                            });
-                       });
-                    }
-                }
-            });
+            game.register(gameHandlerFor(game));
         });
     });
 
