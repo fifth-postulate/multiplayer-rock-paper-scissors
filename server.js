@@ -83,6 +83,8 @@ io.on('connection', function(socket){
                             socket.emit('gameId', { gameId: nextGame.id });
                         });
                     });
+                } else {
+                    socket.emit('event', { finished: true });
                 }
             }
         };

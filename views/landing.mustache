@@ -41,6 +41,8 @@
              console.log(event);
              if (event.hasOwnProperty('type')) {
                  adminPanelApp.ports.event.send(event.type);
+             } else if (event.hasOwnProperty('finished')) {
+                 adminPanelApp.ports.finish.send('you can finish now');
              } else {
                  adminPanelApp.ports.event.send(event.gameId);
              }
