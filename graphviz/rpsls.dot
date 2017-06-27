@@ -1,12 +1,12 @@
 strict digraph {
   scissors -> paper
-  paper -> rock
-  rock -> lizard
-  lizard -> spock
-  spock -> scissors
   scissors -> lizard
-  lizard -> paper
+  paper -> rock
   paper -> spock
-  spock -> rock
+  lizard -> spock
+  lizard -> paper
+  rock -> lizard
   rock -> scissors
+  spock -> scissors
+  spock -> rock
 }
