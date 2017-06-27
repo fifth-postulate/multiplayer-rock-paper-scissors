@@ -4,3 +4,6 @@ all: $(PNGS)
 
 graphviz/%.dot.png: graphviz/%.dot
 	circo -O -Tpng $<
+
+graphviz/node.dot.png: graphviz/node.dot
+	dot -O -Tpng $<
