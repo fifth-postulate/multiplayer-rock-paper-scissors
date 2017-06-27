@@ -1,0 +1,14 @@
+strict digraph {
+  {
+    node [ shape=none ]
+    a    [ label=""  ]
+    b    [ label=""  ]
+    c    [ label="" shape=circle ]
+    d    [ label=""  ]
+    e    [ label=""  ]
+  }
+  a -> c
+  b -> c
+  c -> d
+  c -> e
+}
