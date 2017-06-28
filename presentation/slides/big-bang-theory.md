@@ -1,1 +1,1 @@
-##  Big Bang Theory
+![The Big Bang Theory](resources/bigbangtheory.png)
